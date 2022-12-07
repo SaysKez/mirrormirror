@@ -11,7 +11,7 @@
   <p id="message"></p>
   <script>
     // Check if the browser supports the getUserMedia() and speechRecognition APIs
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       // Get the user's camera and display it in the <video> element
       navigator.mediaDevices.getUserMedia({
         video: { facingMode: "user" } // Use the front-facing camera
@@ -22,8 +22,18 @@
       }).catch(function(error) {
         console.error("Error accessing camera:", error);
       });
+    }
+ 
+</script> 
+</body>
+</html>
 
-      // Define a list of statements to display
+<!--
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
+-->
+
+<!--
+          // Define a list of statements to display
       const statements = [
         "You are looking fabulous today!",
         "You are the fairest of them all.",
@@ -41,8 +51,4 @@
   }
 };
 recognition.start();
-    }
- 
-</script> 
-</body>
-</html>
+-->

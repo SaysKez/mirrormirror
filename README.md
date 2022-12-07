@@ -1,4 +1,4 @@
 # To Do
 
-- [] Camera stream
-- [] Voice activation
+- [ ] Camera stream
+- [ ] Voice activation
