@@ -7,9 +7,31 @@
 <body>
   <h1>Mirror</h1>
   <p>Welcome to Mirror, your live camera feed is below:</p>
-  <video id="camera" width="100%" height="500" style="border-radius: 25%;"></video>
+  <video autoplay="true" id="camera" width="100%" height="80%"></video>
   <p id="message"></p>
+
   <script>
+    var video = document.querySelector("#camera");
+
+    if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true, facingMode: "user" })
+        .then(function (stream) {
+        video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+        console.log("Something went wrong!");
+        });
+    }
+  </script>
+</body>
+</html>
+
+<!--
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
+-->
+
+<!--
+      <script>
     // Check if the browser supports the getUserMedia() and speechRecognition APIs
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       // Get the user's camera and display it in the <video> element
@@ -23,13 +45,7 @@
         console.error("Error accessing camera:", error);
       });
     }
- 
 </script> 
-</body>
-</html>
-
-<!--
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
 -->
 
 <!--
