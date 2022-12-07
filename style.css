@@ -1,0 +1,10 @@
+body {
+    background-color: #ADD8E6;
+  }
+  
+  video#camera {
+    border: 10px solid black;
+    border-radius: 25%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }

@@ -1,0 +1,120 @@
+<script>
+    // Check if the browser supports the getUserMedia() method
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      // Get the user's camera and display it in the <video> element
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" } // Use the front-facing camera
+      }).then(function(stream) {
+        var cameraElement = document.getElementById("camera");
+        cameraElement.srcObject = stream;
+        cameraElement.play();
+      }).catch(function(error) {
+        console.error("Error accessing camera:", error);
+      });
+    }
+</script>
+
+
+<script>
+    // Check if the browser supports the getUserMedia() and speechSynthesis APIs
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.speechSynthesis) {
+      // Get the user's camera and display it in the <video> element
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" } // Use the front-facing camera
+      }).then(function(stream) {
+        var cameraElement = document.getElementById("camera");
+        cameraElement.srcObject = stream;
+        cameraElement.play();
+      }).catch(function(error) {
+        console.error("Error accessing camera:", error);
+      });
+
+      // Define a list of statements to display
+      var statements = [
+        "You are looking fabulous today!",
+        "You are the fairest of them all.",
+        "Mirror mirror on the wall, who is the fairest of them all?",
+        "Your beauty shines like the stars in the sky."
+      ];
+
+      // Select a random statement from the list
+      var statement = statements[Math.floor(Math.random() * statements.length)];
+
+      // Get the <p> element with the id "message"
+      var messageElement = document.getElementById("message");
+
+      // Set the innerHTML of the <p> element to the selected statement
+      messageElement.innerHTML = statement;
+
+      // Create a new SpeechSynthesisUtterance instance with the selected statement
+      var utterance = new SpeechSynthesisUtterance(statement);
+
+      // Set the language of the utterance to English
+      utterance.lang = "en-US";
+
+      // Use the speech synthesis API to speak the selected statement
+      window.speechSynthesis.speak(utterance);
+    }
+</script>
+
+
+<script>
+    // Check if the browser supports the getUserMedia() and speechRecognition APIs
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
+      // Get the user's camera and display it in the <video> element
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" } // Use the front-facing camera
+      }).then(function(stream) {
+        var cameraElement = document.getElementById("camera");
+        cameraElement.srcObject = stream;
+        cameraElement.play();
+      }).catch(function(error) {
+        console.error("Error accessing camera:", error);
+      });
+
+      // Create a new SpeechRecognition instance
+      var recognition = new SpeechRecognition();
+
+      // Set the language of the recognition to English
+      recognition.lang = "en-US";
+
+      // Listen for speech input from the user
+      recognition.start();
+
+      // Define a list of statements to display
+      var statements = [
+        "You are looking fabulous today!",
+        "You are the fairest of them all.",
+        "Mirror mirror on the wall, who is the fairest of them all?",
+        "Your beauty shines like the stars in the sky."
+      ];
+
+      // Listen for the "result" event, which is fired when the speech recognition service returns a result
+      recognition.addEventListener("result", function(event) {
+        // Get the transcript of the recognized speech
+        var transcript = event.results[0][0].transcript;
+
+        // Check if the transcript includes the key words "mirror mirror"
+        if (transcript.toLowerCase().includes("mirror mirror")) {
+          // Select a random statement from the list
+          var statement = statements[Math.floor(Math.random() * statements.length)];
+
+          // Get the <p> element with the id "message"
+          var messageElement = document.getElementById("message");
+
+          // Set the innerHTML of the <p> element to the selected statement
+          messageElement.innerHTML = statement;
+
+          // Create a new SpeechSynthesisUtterance instance with the selected statement
+          var utterance = new SpeechSynthesisUtterance(statement);
+
+          // Set the language of the utterance to English
+          utterance.lang = "en-US";
+
+          // Use the speech synthesis API to speak the selected
+          window.speechSynthesis.speak(utterance);
+    }
+      )
+    }
+ 
+</script> 

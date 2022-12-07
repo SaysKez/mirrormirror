@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mirror</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Mirror</h1>
+  <p>Welcome to Mirror, your live camera feed is below:</p>
+  <video id="camera" width="100%" height="500" style="border-radius: 25%;"></video>
+  <p id="message"></p>
+  <script>
+    // Check if the browser supports the getUserMedia() and speechRecognition APIs
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
+      // Get the user's camera and display it in the <video> element
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" } // Use the front-facing camera
+      }).then(function(stream) {
+        var cameraElement = document.getElementById("camera");
+        cameraElement.srcObject = stream;
+        cameraElement.play();
+      }).catch(function(error) {
+        console.error("Error accessing camera:", error);
+      });
+
+      // Define a list of statements to display
+      const statements = [
+        "You are looking fabulous today!",
+        "You are the fairest of them all.",
+        "Mirror mirror on the wall, who is the fairest of them all?",
+        "Your beauty shines like the stars in the sky."
+      ];
+
+      const mirrorMirror = new SpeechSynthesisUtterance();
+      mirrorMirror.text = statements[Math.floor(Math.random() * statements.length)];
+
+      const recognition = new webkitSpeechRecognition();
+      recognition.onresult = function(event) {
+      if (event.results[0][0].transcript === "mirror mirror") {
+      speechSynthesis.speak(mirrorMirror);
+  }
+};
+recognition.start();
+    }
+ 
+</script> 
+</body>
+</html>
