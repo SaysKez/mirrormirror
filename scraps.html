@@ -15,6 +15,33 @@
 </script>
 
 
+
+
+<script>
+        // Define a list of statements to display
+        var statements = [
+        "You are looking fabulous today!",
+        "You are the fairest of them all.",
+        "Who's awesome? You're awesome!"
+      ];
+
+     // Select a random statement from the list
+    var statement = statements[Math.floor(Math.random() * statements.length)];
+
+    // Get the <p> element with the id "message"
+    var messageElement = document.getElementById("message");
+
+    // Set the innerHTML of the <p> element to the selected statement
+    messageElement.innerHTML = statement;
+</script>
+
+
+
+
+
+
+
+
 <script>
     // Check if the browser supports the getUserMedia() and speechSynthesis APIs
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.speechSynthesis) {
@@ -56,6 +83,106 @@
       window.speechSynthesis.speak(utterance);
     }
 </script>
+
+
+<button id="button">Mirror Mirror</button>
+<script>
+const button = document.getElementById('button');
+
+function playRandomPhrase() {
+  const phrases = [
+    'You are the fairest of them all.',
+    'I am your loyal servant.',
+    'What is your command, my queen?'
+  ];
+
+  // Generate a random index
+  const index = Math.floor(Math.random() * phrases.length);
+
+  // Get the phrase at the selected index
+  const phrase = phrases[index];
+
+  // Create an AudioContext
+  const audioContext = new AudioContext();
+
+  // Use speech synthesis to play the phrase
+  const utterance = new SpeechSynthesisUtterance(phrase);
+  speechSynthesis.speak(utterance);
+}
+
+button.addEventListener('click', playRandomPhrase);
+</script>
+
+
+
+
+<script>
+// Create a new SpeechRecognition instance
+const recognition = new SpeechRecognition();
+
+// Set the language to English
+recognition.lang = 'en-US';
+
+// Set the continuous and interimResults properties to true
+// so that the recognition will continue until the user stops speaking
+recognition.continuous = true;
+recognition.interimResults = true;
+
+// Set the maxAlternatives property to 1 to return only the most
+// likely result
+recognition.maxAlternatives = 1;
+
+// Start listening for speech
+recognition.start();
+
+recognition.onresult = (event) => {
+  // Get the most likely result
+  const result = event.results[event.resultIndex][0];
+
+  // Check if the result matches the phrase "mirror mirror"
+  if (result.transcript.toLowerCase() === 'mirror mirror') {
+    // If it does, call the playRandomPhrase function
+    playRandomPhrase();
+  }
+};
+
+function playRandomPhrase() {
+  const phrases = [
+    'You are the fairest of them all.',
+    'I am your loyal servant.',
+    'What is your command, my queen?'
+  ];
+
+  // Generate a random index
+  const index = Math.floor(Math.random() * phrases.length);
+
+  // Get the phrase at the selected index
+  const phrase = phrases[index];
+
+  // Create an AudioContext
+  const audioContext = new AudioContext();
+
+  // Use speech synthesis to play the phrase
+  const utterance = new SpeechSynthesisUtterance(phrase);
+  speechSynthesis.speak(utterance);
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script>
@@ -116,3 +243,5 @@
     }
     }
  </script> 
+
+ 

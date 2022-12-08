@@ -5,10 +5,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mirror</h1>
-  <p>Welcome to Mirror, your live camera feed is below:</p>
-  <video autoplay="true" id="camera" width="100%" height="80%"></video>
+  <video autoplay="true" id="camera"></video>
   <p id="message"></p>
+  <button id="button">Mirror Mirror</button>
 
   <script>
     var video = document.querySelector("#camera");
@@ -22,49 +21,37 @@
         console.log("Something went wrong!");
         });
     }
+
+    const button = document.getElementById('button');
+
+    function playRandomPhrase() {
+    const phrases = [
+    "You are looking fabulous today!",
+    "You are the fairest of them all.",
+    "Who's awesome? You're awesome!"
+    ];
+
+    // Generate a random index
+    const index = Math.floor(Math.random() * phrases.length);
+
+    // Get the phrase at the selected index
+    const phrase = phrases[index];
+
+    // Create an AudioContext
+    const audioContext = new AudioContext();
+
+    // Use speech synthesis to play the phrase
+    const utterance = new SpeechSynthesisUtterance(phrase);
+    speechSynthesis.speak(utterance);
+
+    // Get the <p> element with the id "message"
+    var messageElement = document.getElementById("message");
+
+    // Set the innerHTML of the <p> element to the selected statement
+    messageElement.innerHTML = phrase;
+    }
+
+    button.addEventListener('click', playRandomPhrase);
   </script>
 </body>
 </html>
-
-<!--
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.SpeechRecognition) {
--->
-
-<!--
-      <script>
-    // Check if the browser supports the getUserMedia() and speechRecognition APIs
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      // Get the user's camera and display it in the <video> element
-      navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "user" } // Use the front-facing camera
-      }).then(function(stream) {
-        var cameraElement = document.getElementById("camera");
-        cameraElement.srcObject = stream;
-        cameraElement.play();
-      }).catch(function(error) {
-        console.error("Error accessing camera:", error);
-      });
-    }
-</script> 
--->
-
-<!--
-          // Define a list of statements to display
-      const statements = [
-        "You are looking fabulous today!",
-        "You are the fairest of them all.",
-        "Mirror mirror on the wall, who is the fairest of them all?",
-        "Your beauty shines like the stars in the sky."
-      ];
-
-      const mirrorMirror = new SpeechSynthesisUtterance();
-      mirrorMirror.text = statements[Math.floor(Math.random() * statements.length)];
-
-      const recognition = new webkitSpeechRecognition();
-      recognition.onresult = function(event) {
-      if (event.results[0][0].transcript === "mirror mirror") {
-      speechSynthesis.speak(mirrorMirror);
-  }
-};
-recognition.start();
--->
