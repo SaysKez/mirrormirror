@@ -12,7 +12,7 @@
   <script>
     var video = document.querySelector("#camera");
 
-    if (navigator.mediaDevices.getUserMedia) {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true, facingMode: "user" })
         .then(function (stream) {
         video.srcObject = stream;
@@ -52,6 +52,41 @@
     }
 
     button.addEventListener('click', playRandomPhrase);
+
+    //Speech recognition
+    const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+    const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
+    const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+    // Create a new SpeechRecognition instance
+    const recognition = new SpeechRecognition();
+
+    // Set the language to English
+    recognition.lang = 'en-US';
+
+    // Set the continuous and interimResults properties to true
+    // so that the recognition will continue until the user stops speaking
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    // Set the maxAlternatives property to 1 to return only the most
+    // likely result
+    recognition.maxAlternatives = 1;
+
+    // Start listening for speech
+    recognition.start();
+
+    recognition.onresult = (event) => {
+     // Get the transcript of the recognized speech
+     var transcript = event.results[0][0].transcript;
+
+        // Check if the result matches the phrase "mirror mirror"
+        if (transcript.toLowerCase().includes("mirror mirror")) {
+            // If it does, call the playRandomPhrase function
+            playRandomPhrase();
+        }
+    }
+
+
   </script>
 </body>
 </html>
