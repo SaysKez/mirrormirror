@@ -1,4 +1,113 @@
 <script>
+    var video = document.querySelector("#camera");
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true, facingMode: "user" })
+        .then(function (stream) {
+        video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+        console.log("Something went wrong!");
+        });
+    }
+
+    const button = document.getElementById('button');
+
+    function playRandomPhrase() {
+    const phrases = [
+    "You are looking fabulous today!",
+    "You are the fairest of them all.",
+    "Who's awesome? You're awesome!"
+    ];
+
+    // Generate a random index
+    const index = Math.floor(Math.random() * phrases.length);
+
+    // Get the phrase at the selected index
+    const phrase = phrases[index];
+
+    // Create an AudioContext
+    const audioContext = new AudioContext();
+
+    // Use speech synthesis to play the phrase
+    const utterance = new SpeechSynthesisUtterance(phrase);
+    speechSynthesis.speak(utterance);
+
+    // Get the <p> element with the id "message"
+    var messageElement = document.getElementById("message");
+
+    // Set the innerHTML of the <p> element to the selected statement
+    messageElement.innerHTML = phrase;
+    }
+
+    button.addEventListener('click', playRandomPhrase);
+
+    //Speech recognition
+    const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+    const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
+    const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+    // Create a new SpeechRecognition instance
+    const recognition = new SpeechRecognition();
+
+    // Set the language to English
+    recognition.lang = 'en-US';
+
+    // Set the continuous and interimResults properties to true
+    // so that the recognition will continue until the user stops speaking
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    // Set the maxAlternatives property to 1 to return only the most
+    // likely result
+    recognition.maxAlternatives = 1;
+
+    // Start listening for speech
+    recognition.start();
+
+    recognition.onresult = (event) => {
+     // Get the transcript of the recognized speech
+     var transcript = event.results[0][0].transcript;
+
+        // Check if the result matches the phrase "mirror mirror"
+        if (transcript.toLowerCase().includes("mirror mirror")) {
+            // If it does, call the playRandomPhrase function
+           playRandomPhrase();
+        }
+    }
+
+
+  </script>
+
+  <script>
+        // Define a list of statements to display
+        var phrases = [
+        "You are looking fabulous today!",
+        "You are the fairest of them all.",
+        "Who's awesome? You're awesome!"
+      ];
+
+     // Select a random statement from the list
+    var phrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+    function playRandomPhrase() {
+    // Get the <p> element with the id "message"
+    var messageElement = document.getElementById("message");
+
+    // Set the innerHTML of the <p> element to the selected statement
+    messageElement.innerHTML = phrase;
+
+    // Create an AudioContext
+    const audioContext = new AudioContext();
+
+    // Use speech synthesis to play the phrase
+    const utterance = new SpeechSynthesisUtterance(phrase);
+    speechSynthesis.speak(utterance);
+    }
+  </script>
+
+
+
+<script>
     // Check if the browser supports the getUserMedia() method
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       // Get the user's camera and display it in the <video> element
@@ -174,7 +283,10 @@ function playRandomPhrase() {
 
 
 
-
+<script>
+// If it does, call the playRandomPhrase function
+playRandomPhrase();
+</script>
 
 
 

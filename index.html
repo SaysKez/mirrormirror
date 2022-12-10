@@ -26,12 +26,13 @@
 
     function playRandomPhrase() {
     const phrases = [
-    "You are looking fabulous today!",
-    "You are the fairest of them all.",
-    "Who's awesome? You're awesome!"
+        "You are looking fabulous today!",
+        "You are the fairest of them all.",
+        "Who's awesome? You're awesome!"
     ];
 
     // Generate a random index
+    //var phrase = phrases[Math.floor(Math.random() * phrases.length)];
     const index = Math.floor(Math.random() * phrases.length);
 
     // Get the phrase at the selected index
@@ -57,6 +58,7 @@
     const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
     const SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
     const SpeechRecognitionEvent = window.SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+
     // Create a new SpeechRecognition instance
     const recognition = new SpeechRecognition();
 
@@ -75,16 +77,54 @@
     // Start listening for speech
     recognition.start();
 
-    recognition.onresult = (event) => {
-     // Get the transcript of the recognized speech
-     var transcript = event.results[0][0].transcript;
+    //recognition.onresult = (event) => {
+    // Get the transcript of the recognized speech
+    //var transcript = event.results[0][0].transcript;
 
-        // Check if the result matches the phrase "mirror mirror"
-        if (transcript.toLowerCase().includes("mirror mirror")) {
+    // Check if the result matches the phrase "mirror mirror"
+    //if (transcript.toLowerCase().includes("mirror mirror")) {
+        // If it does, call the playRandomPhrase function
+        //playRandomPhrase();
+    //}
+
+    // Define a flag variable to track whether the playRandomPhrase function has been called
+    var played = false;
+
+    // Define a variable to hold the current transcript
+    var transcript = "";
+
+    // Define a regular expression to match the pattern "mirror mirror" followed by an optional space and any other words
+    const regex = /^mirror mirror\s?\w*/;
+
+    recognition.onresult = (event) => {
+    // Check if the result is final
+    if (event.results[0].isFinal) {
+
+        // Get the transcript of the recognized speech
+        //var transcript = event.results[0][0].transcript;
+
+        // Update the transcript with the recognized speech
+        transcript += event.results[0][0].transcript;
+
+        // Check if the result matches the phrase "mirror mirror" and the playRandomPhrase function has not yet been called
+        if (regex.test(transcript.toLowerCase()) && !played) {
+        //if (transcript.toLowerCase().includes("mirror mirror") && !played) {
             // If it does, call the playRandomPhrase function
             playRandomPhrase();
+
+            // Set the flag to true to indicate that the function has been called
+            played = true;
+
+            // Reset the transcript to an empty string
+            transcript = "";
+
+            // Set a timeout to reset the flag after 5 seconds
+            setTimeout(() => {
+            played = false;
+            }, 4000);
         }
     }
+    };
 
 
   </script>
