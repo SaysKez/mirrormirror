@@ -1,16 +1,17 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');*/
 /* @import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Babylonica&family=Poppins&display=swap');
 
 body {
     background-color: #fff;
     background: radial-gradient(circle, white, silver);
     background-image: url("sparkle1.gif");
     background-repeat: repeat;
-    font-family: 'Comforter Brush', cursive;
+    font-family: 'Babylonica', cursive;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    position: relative;
   }
   
   .grid-container {
@@ -21,18 +22,39 @@ body {
     margin-top: 3rem;
   }
 
+  .center {
+    position: fixed;
+    bottom: 7vh;
+    /* transform: translateY(-50%); */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   video {
     display:inline;
     border: 10px solid black;
     border-radius: 100%;
     object-fit: cover;
-    /* height: 65vh;
-    margin-top: 5rem;
-    width: 25rem; */
     height: 45vh;
     margin-top: 5rem;
-    width: 20rem;
+    /* width: 22rem; */
+    width: 40vh;
+    animation: ripple 5s linear infinite;
+    filter: brightness(1.2) grayscale(0.1) sepia(0.4);
   }
+  
+  @keyframes ripple {
+    0% {
+    filter: brightness(1.2) grayscale(0.2) sepia(0.4);
+    }
+    50% {
+    filter: brightness(1.3) grayscale(0.1) sepia(0.8);
+    }
+    100% {
+    filter: brightness(1.2) grayscale(0.2) sepia(0.4);
+    }
+  }
+
 
   #mirror {
     display:inline;
@@ -54,7 +76,7 @@ body {
     color: #000;
     max-width: 800px;
     text-align: center;
-    margin: 6rem auto 0rem auto;
+    margin: 8rem auto 0rem auto;
   }
 
   button {
@@ -65,16 +87,38 @@ body {
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-size: 1.25rem;
-    margin: 2rem auto;
+    margin: 1rem auto;
     border-radius: 4px;
     padding: 0.25em 1em;
+    transition: all 0.25s ease-in-out;
   }
 
   button:hover {
     cursor: pointer;
+    box-shadow: 0 0 1em #f0e7bf, 0 0 1em #f0e7bf inset;
+    color: #fff;
+    transform: scale(1.05);
   }
 
   /* BACKGROUND */
   /*
   https://alvarotrigo.com/blog/animated-backgrounds-css/
 */
+
+/* SMALL */
+@media screen and (max-width: 1200px) {
+    #message {
+        font-size: 2rem;
+    }
+  }
+
+/* LARGE DESKTOP */
+@media screen and (min-width: 1650px) {
+    .grid-container {
+        margin: auto;
+      }
+
+    #message {
+        margin: 10rem auto 0rem auto;
+    }
+  }
