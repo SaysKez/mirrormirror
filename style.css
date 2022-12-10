@@ -5,37 +5,39 @@
 body {
     background-color: #fff;
     background: radial-gradient(circle, white, silver);
-    /* height: 100vh;
-    width: 100vw; */
     background-image: url("sparkle1.gif");
     background-repeat: repeat;
     font-family: 'Comforter Brush', cursive;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
   }
   
   .grid-container {
     display: grid;
     justify-items: center;
     align-items: center;
-    margin-top: 7rem;
+    /* margin-top: 7rem; */
+    margin-top: 3rem;
   }
 
   video {
     display:inline;
     border: 10px solid black;
     border-radius: 100%;
-    /* height: 80vh;
-    width: auto; */
     object-fit: cover;
-    height: 65vh;
+    /* height: 65vh;
     margin-top: 5rem;
-    width: 25rem;
-   /* position: absolute;
-    transform: translate(-50%, -50%); */
+    width: 25rem; */
+    height: 45vh;
+    margin-top: 5rem;
+    width: 20rem;
   }
 
   #mirror {
     display:inline;
-    height: 100vh;
+    /* height: 100vh; */
+    height: 75vh;
     width: auto;
     position: absolute;
   }
@@ -50,8 +52,9 @@ body {
     text-align: center;
     font-size: 4rem;
     color: #000;
-    margin-top: 8rem;
     max-width: 800px;
+    text-align: center;
+    margin: 6rem auto 0rem auto;
   }
 
   button {
@@ -62,7 +65,7 @@ body {
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-size: 1.25rem;
-    margin: 2rem auto 4rem auto;
+    margin: 2rem auto;
     border-radius: 4px;
     padding: 0.25em 1em;
   }
