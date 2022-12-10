@@ -1,19 +1,77 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');*/
+/* @import url('https://fonts.googleapis.com/css2?family=Arizonia&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Poppins&display=swap');
+
 body {
-    background-color: #ADD8E6;
+    background-color: #fff;
+    background: radial-gradient(circle, white, silver);
+    /* height: 100vh;
+    width: 100vw; */
+    background-image: url("sparkle1.gif");
+    background-repeat: repeat;
+    font-family: 'Comforter Brush', cursive;
   }
   
+  .grid-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 7rem;
+  }
+
   video {
-    display: block;
+    display:inline;
     border: 10px solid black;
     border-radius: 100%;
-    height: 80vh;
+    /* height: 80vh;
+    width: auto; */
+    object-fit: cover;
+    height: 65vh;
+    margin-top: 5rem;
+    width: 25rem;
+   /* position: absolute;
+    transform: translate(-50%, -50%); */
+  }
+
+  #mirror {
+    display:inline;
+    height: 100vh;
     width: auto;
-    margin: 100px auto;
+    position: absolute;
+  }
+
+  p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
   }
 
   #message {
+    display: block;
     text-align: center;
-    font-size: 2rem;
-    margin-top: -250px;
-    color: #fff;
+    font-size: 4rem;
+    color: #000;
+    margin-top: 8rem;
+    max-width: 800px;
   }
+
+  button {
+    display: block;
+    border: none;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    margin: 2rem auto 4rem auto;
+    border-radius: 4px;
+    padding: 0.25em 1em;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  /* BACKGROUND */
+  /*
+  https://alvarotrigo.com/blog/animated-backgrounds-css/
+*/
