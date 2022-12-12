@@ -44,7 +44,7 @@ body {
     margin-top: 5rem;
     /* width: 22rem; */
     width: 40vh;
-    animation: ripple 5s linear infinite;
+    animation: ripple 3.5s linear infinite;
     filter: brightness(1.2) grayscale(0.1) sepia(0.4);
   }
   
